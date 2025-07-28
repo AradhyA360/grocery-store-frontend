@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div
+              class="card-header d-flex justify-content-between align-items-center"
+            >
+              <h3>Online Grocery Store - Dashboard</h3>
+              <div>
+                <span class="badge bg-primary me-2">{{
+                  currentUser.role
+                }}</span>
+                <span>Welcome, {{ currentUser.username }}!</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-8">
+                  <h5>Please select an option:</h5>
+                  <div class="list-group">
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action"
+                      (click)="selectOption(1)"
+                    >
+                      1. Customer Registration
+                    </button>
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action"
+                      (click)="selectOption(2)"
+                    >
+                      2. Update Customer Details
+                    </button>
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action"
+                      (click)="selectOption(3)"
+                    >
+                      3. Get Customer Order Details
+                    </button>
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action"
+                      (click)="selectOption(4)"
+                      [disabled]="!isAdmin()"
+                    >
+                      4. Customer Search
+                      <span *ngIf="!isAdmin()" class="text-muted"
+                        >(Admin Only)</span
+                      >
+                    </button>
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action"
+                      (click)="selectOption(5)"
+                    >
+                      5. Product Search
+                    </button>
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action"
+                      (click)="selectOption(6)"
+                      [disabled]="!isAdmin()"
+                    >
+                      6. Register Product
+                      <span *ngIf="!isAdmin()" class="text-muted"
+                        >(Admin Only)</span
+                      >
+                    </button>
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action"
+                      (click)="selectOption(7)"
+                      [disabled]="!isAdmin()"
+                    >
+                      7. Update Product
+                      <span *ngIf="!isAdmin()" class="text-muted"
+                        >(Admin Only)</span
+                      >
+                    </button>
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action"
+                      (click)="selectOption(8)"
+                      [disabled]="!isAdmin()"
+                    >
+                      8. Delete Product
+                      <span *ngIf="!isAdmin()" class="text-muted"
+                        >(Admin Only)</span
+                      >
+                    </button>
+                    <button
+                      type="button"
+                      class="list-group-item list-group-item-action list-group-item-danger"
+                      (click)="selectOption(9)"
+                    >
+                      9. Exit
+                    </button>
+                  </div>
+
+                  <div
+                    *ngIf="showInvalidOptionMessage"
+                    class="alert alert-warning mt-3"
+                  >
+                    You have selected an inappropriate option. Kindly select an
+                    appropriate option.
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6>Quick Options</h6>
+                      <div class="mb-2">
+                        <input
+                          type="number"
+                          class="form-control"
+                          placeholder="Enter option (1-9)"
+                          #optionInput
+                          (keyup.enter)="
+                            selectOption(optionInput.valueAsNumber)
+                          "
+                        />
+                      </div>
+                      <button
+                        class="btn btn-sm btn-outline-primary"
+                        (click)="selectOption(optionInput.valueAsNumber)"
+                      >
+                        Go
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

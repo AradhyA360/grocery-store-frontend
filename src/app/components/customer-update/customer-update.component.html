@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    // customer-update.component.html
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">
+              <h3>Update Customer Details</h3>
+            </div>
+            <div class="card-body">
+              <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                  <label for="customerId" class="form-label"
+                    >Customer ID *</label
+                  >
+                  <input
+                    type="text"
+                    id="customerId"
+                    class="form-control"
+                    formControlName="customerId"
+                    placeholder="Enter 6-digit Customer ID"
+                    [class.is-invalid]="submitted && f['customerId'].errors"
+                  />
+                  <div
+                    *ngIf="submitted && f['customerId'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['customerId'].errors['required']">
+                      Customer ID is required
+                    </div>
+                    <div *ngIf="f['customerId'].errors['pattern']">
+                      Customer ID must be 6 digits
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="fullName" class="form-label">Full Name</label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        class="form-control"
+                        formControlName="fullName"
+                        placeholder="Leave empty to keep current"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        formControlName="email"
+                        placeholder="Leave empty to keep current"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="password" class="form-label"
+                        >New Password</label
+                      >
+                      <input
+                        type="password"
+                        id="password"
+                        class="form-control"
+                        formControlName="password"
+                        placeholder="Leave empty to keep current"
+                      />
+                      <small class="form-text text-muted">
+                        Must contain uppercase, lowercase, digit and special
+                        character
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="contactNumber" class="form-label"
+                        >Contact Number</label
+                      >
+                      <input
+                        type="tel"
+                        id="contactNumber"
+                        class="form-control"
+                        formControlName="contactNumber"
+                        placeholder="Leave empty to keep current"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="address" class="form-label">Address</label>
+                  <textarea
+                    id="address"
+                    class="form-control"
+                    rows="3"
+                    formControlName="address"
+                    placeholder="Leave empty to keep current"
+                  ></textarea>
+                </div>
+
+                <div *ngIf="error" class="alert alert-danger">
+                  {{ error }}
+                </div>
+
+                <div *ngIf="success" class="alert alert-success">
+                  {{ success }}
+                </div>
+
+                <div class="d-flex justify-content-between">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    (click)="backToDashboard()"
+                  >
+                    Back to Dashboard
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="loading"
+                  >
+                    <span
+                      *ngIf="loading"
+                      class="spinner-border spinner-border-sm me-2"
+                    ></span>
+                    Update Customer
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
